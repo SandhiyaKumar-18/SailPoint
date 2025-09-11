@@ -145,7 +145,7 @@ My Multi-Stage Roadmap from **Learner → Developer → Architect**
 🧠 Debugging > Reading → Always get hands-on!  
 ✅ Each phase builds on the last → **don’t skip**  
 
-⚓ By following this roadmap, you won’t just **learn SailPoint** — you’ll grow into a **developer and architect who can design enterprise-grade IAM systems** 🌍.  
+
 
 
 
