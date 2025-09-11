@@ -1,6 +1,6 @@
 
 # ⚓ SailPoint IdentityIQ – The Complete Mastery Journey 🚀  
-Your Multi-Stage Roadmap from **Learner → Developer → Architect**  
+My Multi-Stage Roadmap from **Learner → Developer → Architect**  
 
 🎓 **Goal:** Become a SailPoint Expert (Admin + Developer + Architect) 🌟  
 📅 **Duration:** Flexible (3–12 Months, based on pace)  
