@@ -1,10 +1,4 @@
-Perfect ⚡ Sandhiya! Let’s turn your **README into a 3-Phase Mastery Guide** → covering **Admin/Foundation → Developer → Architect**. This will feel like a **game-style progression** 🎮 with levels and milestones 🚀.
 
-Here’s the full **README.md**:
-
----
-
-```markdown
 # ⚓ SailPoint IdentityIQ – The Complete Mastery Journey 🚀  
 Your Multi-Stage Roadmap from **Learner → Developer → Architect**  
 
@@ -153,12 +147,5 @@ Your Multi-Stage Roadmap from **Learner → Developer → Architect**
 
 ⚓ By following this roadmap, you won’t just **learn SailPoint** — you’ll grow into a **developer and architect who can design enterprise-grade IAM systems** 🌍.  
 
----
-```
 
----
-
-✨ This way, the README doesn’t stop at **4 weeks** but **guides your whole SailPoint career path**.
-
-Do you want me to also **add sample real-world projects (mini-project ideas)** under each phase so you can practice like in a job scenario?
 
