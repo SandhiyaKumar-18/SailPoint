@@ -99,3 +99,21 @@ SELECT i.name AS IdentityName, l.application, l.nativeidentity
 FROM spt_identity i
 JOIN spt_link l ON i.id = l.identityid
 WHERE i.name = 'Alice';
+```
+## 7.🔍 SailPoint Database – Real-World Analogy  
+
+Think of the **database** as a **library 📚**:  
+
+- **Books (tables)** = store all data (identities, apps, roles).  
+- **Librarian (IIQ server)** = fetches & updates books.  
+- **Readers (users/managers)** = interact with the system via UI, but never touch the library directly.  
+
+Without the **library**, the **librarian** has nothing to give 😅.  
+
+---
+
+✨ **In short:**  
+- **IIQ Server = brain 🧠 (logic)**  
+- **Database = memory 📚 (data)**  
+- **Connectors = hands 🤲 (actions)**  
+
