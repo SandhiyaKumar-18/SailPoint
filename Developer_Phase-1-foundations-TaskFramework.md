@@ -83,7 +83,44 @@ Think of tasks as **factory machines 🏭**:
 - **TaskSchedule = Timer switch (when to run)** ⏰  
 - **TaskResult = Finished goods + quality report** 📊  
 
-Without machines (tasks), workers (admins) would have to **handcraft everything manually**.  
+Without machines (tasks), workers (admins) would have to **handcraft everything manually**. 
+
+
+## ⚡ Difference Between Tasks and Workflows in SailPoint
+
+| Feature                  | Task Framework 🛠️                              | Workflow Engine 🔄                               |
+|---------------------------|-----------------------------------------------|------------------------------------------------|
+| **Purpose**               | Automate background jobs, bulk operations    | Automate step-by-step identity processes       |
+| **Trigger**               | Manual or scheduled (cron-based)             | Event-driven (e.g., new hire, access request) |
+| **Execution**             | Runs as a job in the background              | Executes a defined process flow                |
+| **Scope**                 | Often system-wide, handles multiple identities/accounts at once | Usually one identity/request at a time         |
+| **Components**            | TaskDefinition, TaskExecutor, TaskSchedule, TaskResult | Steps, Transitions, Rules, Forms             |
+| **Customization**         | Java or Beanshell custom tasks               | XML + Beanshell scripts + workflow rules      |
+| **Human Interaction**     | Rare, usually automated                       | Common (approvals, notifications, forms)      |
+| **Examples**              | Aggregation, reports, cube refresh, cleanup | New hire onboarding, access requests, certifications |
+| **Audit & Logging**       | Logs TaskResult, success/failure             | Logs each workflow step, approvals, actions   |
+| **Frequency**             | Scheduled (nightly, weekly) or on-demand     | Triggered by events immediately               |
+
+---
+
+### 🔍 Real-World Analogy  
+
+- **Task Framework = Factory machines 🏭**  
+  - Bulk jobs, repetitive, run on schedule.  
+  - Example: Clean up all inactive accounts at 2 AM.  
+
+- **Workflow Engine = Kitchen process 👩‍🍳**  
+  - Step-by-step, may involve human interaction, conditional logic.  
+  - Example: Onboard a new employee (provision accounts, approvals, notifications).  
+
+---
+
+✨ **In short:**  
+- **Tasks = Background jobs** (bulk, scheduled, automated).  
+- **Workflows = Process flows** (event-driven, can involve humans, step-wise).  
+- Both are **automation tools**, but with **different use cases and triggers**.
+
+
 
 ---
 
