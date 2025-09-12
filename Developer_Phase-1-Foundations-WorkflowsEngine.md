@@ -1,4 +1,6 @@
-# ⚙️ SailPoint Workflow Engine – Deep Dive  
+# ⚙️ SailPoint Workflow Engine – Deep Dive 
+
+The Workflow Engine is one of the most important parts of SailPoint IdentityIQ because it drives automation 🚀
 
 The **Workflow Engine** in SailPoint IdentityIQ is like the **traffic controller 🚦** of identity operations.  
 It manages **how tasks flow, in what order, and who handles them.**  
