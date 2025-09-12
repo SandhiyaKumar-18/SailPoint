@@ -3,6 +3,7 @@
 ---
 
 ## 🌟 1. What is the Task Framework?  
+-The Task Framework in SailPoint IdentityIQ is one of the most powerful engines — it’s like the automation factory 🏭 that executes bulk operations, reports, and cleanup jobs behind the scenes.
 - The **Task Framework** in IIQ allows you to run **background jobs**.  
 - These jobs can **aggregate data, run reports, sync identities, or perform cleanups**.  
 - Tasks can be:  
