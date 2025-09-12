@@ -25,7 +25,7 @@ roles.add("Payroll");
 log.info("User " + firstName + " has ID: " + employeeID);
 ```
 
-##2️⃣ Loops
+## 2️⃣ Loops
 
 ```java
 List<String> users = new ArrayList<>();
@@ -40,7 +40,7 @@ for(int i = 0; i < users.size(); i++){
 
 ```
 
-##Enhanced for loop:
+## Enhanced for loop:
 
 ```java
 for(String user : users){
