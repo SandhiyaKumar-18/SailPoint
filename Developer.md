@@ -67,8 +67,7 @@ HR system → SailPoint IIQ → AD + Cloud App → Certification → Audit Repor
 - [ ] Phase 2 ✅  
 - [ ] Phase 3 ✅  
 - [ ] Phase 4 ✅  
-
-💡 **Pro Tip:** Keep a `DevLog.md` → Document all rules, workflows, and issues you solved. This becomes your **portfolio** 📂 for interviews & real projects.  
+ 
 
 ---
 
