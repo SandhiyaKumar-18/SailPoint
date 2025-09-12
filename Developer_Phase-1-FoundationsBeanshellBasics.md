@@ -97,7 +97,7 @@ log.info(message);
 
 ```
 
-##5️⃣ Working with Identity Objects
+## 5️⃣ Working with Identity Objects
 
 ```java
 // Suppose 'identity' is passed to the rule
@@ -111,7 +111,7 @@ identity.setName(username);
 log.info("Generated username: " + username);
 ```
 
-##6️⃣ Working with Lists & Loops
+## 6️⃣ Working with Lists & Loops
 ```java
 List<Role> roles = identity.getRoles();
 for(Role role : roles){
@@ -120,7 +120,7 @@ for(Role role : roles){
 
 ```
 
-##7️⃣ Logging and Debugging
+## 7️⃣ Logging and Debugging
 ```java
 log.info("Debugging info: " + variableName);
 log.warn("Warning example");
