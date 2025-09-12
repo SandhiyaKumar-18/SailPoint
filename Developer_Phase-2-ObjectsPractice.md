@@ -23,9 +23,8 @@ This guide helps you **practice working with core IIQ objects**: Identity, Appli
 
 ---
 
-- [ ] **Write a Beanshell rule to auto-generate username**  
-  ```java
- // Beanshell Rule: Auto-generate username as first.last@company.com
+```java
+// Beanshell Rule: Auto-generate username as first.last@company.com
 
 // Get first and last name attributes from the identity
 String firstName = identity.getStringAttribute("firstname");
@@ -40,6 +39,9 @@ String username = (firstName + "." + lastName + "@company.com").toLowerCase();
 
 // Return the generated username
 return username;
+
+
+```
 
 ---
 
