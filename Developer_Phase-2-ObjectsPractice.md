@@ -127,21 +127,21 @@ These objects give you access to user data, accounts, applications, context, and
 ## 1️⃣ Identity 👤
 Represents a user in IdentityIQ. Core object for users, roles, entitlements, and attributes.
 
-| Method / Attribute | Purpose |
-|-------------------|--------|
-| `identity.getName()` | Returns username |
-| `identity.getAttribute("attributeName")` | Fetch a custom attribute |
-| `identity.setAttribute("attributeName", value)` | Set or update an attribute |
-| `identity.getRoles()` | Returns a list of roles assigned to the user |
-| `identity.addRole("RoleName")` | Assign a role |
-| `identity.removeRole("RoleName")` | Remove a role |
-| `identity.getAccounts()` | Get linked accounts (AD, LDAP, etc.) |
-| `identity.getEntitlements()` | Returns assigned entitlements |
-| `identity.addEntitlement(entitlement)` | Assign entitlement to user |
-| `identity.removeEntitlement(entitlement)` | Remove entitlement from user |
-| `identity.isEnabled()` | Check if identity is active |
-| `identity.disable()` | Disable the identity |
-| `identity.enable()` | Enable the identity |
+| Method / Attribute | Purpose | Example (How to Use) |
+|-------------------|--------|--------------------|
+| `identity.getName()` | Returns username | `String username = identity.getName();` |
+| `identity.getAttribute("department")` | Fetch a custom attribute | `String dept = identity.getAttribute("department");` |
+| `identity.setAttribute("location", "Chennai")` | Set or update an attribute | `identity.setAttribute("location", "Chennai");` |
+| `identity.getRoles()` | Returns list of roles | `List<Role> roles = identity.getRoles();` |
+| `identity.addRole("IT_Admin")` | Assigns a role | `identity.addRole("IT_Admin");` |
+| `identity.removeRole("Intern")` | Removes a role | `identity.removeRole("Intern");` |
+| `identity.getAccounts()` | Get linked accounts | `List<Account> accounts = identity.getAccounts();` |
+| `identity.getEntitlements()` | Returns entitlements | `List<Entitlement> ents = identity.getEntitlements();` |
+| `identity.addEntitlement(entitlement)` | Assign entitlement | `identity.addEntitlement(entitlement);` |
+| `identity.removeEntitlement(entitlement)` | Remove entitlement | `identity.removeEntitlement(entitlement);` |
+| `identity.isEnabled()` | Check if identity is active | `if(identity.isEnabled()){ log.info("Active"); }` |
+| `identity.disable()` | Disable the identity | `identity.disable();` |
+| `identity.enable()` | Enable the identity | `identity.enable();` |
 
 **Example Use Case:** Assign roles, entitlements, or trigger notifications based on identity attributes.
 
@@ -150,17 +150,17 @@ Represents a user in IdentityIQ. Core object for users, roles, entitlements, and
 ## 2️⃣ Account 💼
 Represents a system account for a specific application. Linked to identities via correlation rules.
 
-| Method / Attribute | Purpose |
-|-------------------|--------|
-| `account.getName()` | Username in the system |
-| `account.getApplication()` | System/application the account belongs to |
-| `account.getAttribute("attributeName")` | Fetch account attribute |
-| `account.setAttribute("attributeName", value)` | Update account attribute |
-| `account.getOwner()` | Returns the linked identity (if correlated) |
-| `account.isEnabled()` | Check if account is active |
-| `account.enable()` | Enable account |
-| `account.disable()` | Disable account |
-| `account.delete()` | Delete account from system |
+| Method / Attribute | Purpose | Example (How to Use) |
+|-------------------|--------|--------------------|
+| `account.getName()` | Returns the system username | `String acctName = account.getName();` |
+| `account.getApplication()` | Get the system/application it belongs to | `Application app = account.getApplication();` |
+| `account.getAttribute("mail")` | Fetch a specific account attribute | `String email = account.getAttribute("mail");` |
+| `account.setAttribute("title", "Manager")` | Update a specific account attribute | `account.setAttribute("title", "Manager");` |
+| `account.getOwner()` | Returns linked Identity | `Identity owner = account.getOwner();` |
+| `account.isEnabled()` | Check if account is active | `if(account.isEnabled()){ log.info("Account active"); }` |
+| `account.enable()` | Enable the account | `account.enable();` |
+| `account.disable()` | Disable the account | `account.disable();` |
+| `account.delete()` | Delete account from system | `account.delete();` |
 
 **Example Use Case:** Correlate AD accounts with identities, reconcile inactive accounts.
 
@@ -169,17 +169,19 @@ Represents a system account for a specific application. Linked to identities via
 ## 3️⃣ SailPointContext / .context ⚡
 Provides API access to IdentityIQ objects in rules/workflows. Used for querying, creating, updating, and saving objects.
 
-| Method | Purpose |
-|--------|--------|
-| `context.getObjectByName(Identity.class, "username")` | Fetch identity by username |
-| `context.getObjects(Role.class)` | Fetch all roles |
-| `context.getObjects(Application.class)` | Fetch all applications |
-| `context.getObjects(Policy.class)` | Fetch all policies |
-| `context.saveObject(identity)` | Save changes to an identity |
-| `context.saveObject(account)` | Save account changes |
-| `context.commitTransaction()` | Commit DB changes |
-| `context.deleteObject(identity)` | Delete an object |
-| `context.find(Identity.class, filter)` | Query objects using filters |
+
+| Method | Purpose | Example (How to Use) |
+|--------|--------|--------------------|
+| `context.getObjectByName(Identity.class, "alice.sharma")` | Fetch a user by username | `Identity alice = context.getObjectByName(Identity.class, "alice.sharma");` |
+| `context.getObjects(Role.class)` | Fetch all roles in the system | `List<Role> roles = context.getObjects(Role.class);` |
+| `context.getObjects(Application.class)` | Fetch all applications | `List<Application> apps = context.getObjects(Application.class);` |
+| `context.getObjects(Policy.class)` | Fetch all policies | `List<Policy> policies = context.getObjects(Policy.class);` |
+| `context.saveObject(identity)` | Save changes to an identity | `identity.setAttribute("location","Chennai"); context.saveObject(identity);` |
+| `context.saveObject(account)` | Save account changes | `account.setAttribute("title","Manager"); context.saveObject(account);` |
+| `context.commitTransaction()` | Commit DB changes | `context.commitTransaction();` |
+| `context.deleteObject(identity)` | Delete an object | `context.deleteObject(alice);` |
+| `context.find(Identity.class, filter)` | Query objects using a filter | `Filter filter = Filter.eq("department","HR"); List<Identity> hrUsers = context.find(Identity.class, filter);` |
+
 
 **Example Use Case:** Dynamically fetch another user or role and assign it in a rule.
 
@@ -188,12 +190,13 @@ Provides API access to IdentityIQ objects in rules/workflows. Used for querying,
 ## 4️⃣ Application 💻
 Represents a connected system (AD, Workday, Salesforce, etc.).
 
-| Method | Purpose |
-|--------|--------|
-| `application.getName()` | System name |
-| `application.getAccounts()` | List all accounts in the app |
-| `application.getSchema()` | Return application schema (attributes, identity mapping) |
-| `application.getAttribute("attributeName")` | Get application-specific attribute |
+| Method / Attribute | Purpose | Example (How to Use) |
+|-------------------|--------|--------------------|
+| `application.getName()` | Get system/application name | `String appName = application.getName();` |
+| `application.getAccounts()` | Get all accounts in the application | `List<Account> appAccounts = application.getAccounts();` |
+| `application.getSchema()` | Get application schema (attributes, mappings) | `Schema appSchema = application.getSchema(); log.info(appSchema.toString());` |
+| `application.getAttribute("defaultDomain")` | Get a specific application attribute | `String domain = application.getAttribute("defaultDomain");` |
+
 
 **Example Use Case:** Check which users have accounts in a specific system, or configure provisioning.
 
@@ -202,15 +205,15 @@ Represents a connected system (AD, Workday, Salesforce, etc.).
 ## 5️⃣ Role 🎭
 Represents a collection of entitlements/permissions.
 
-| Method | Purpose |
-|--------|--------|
-| `role.getName()` | Role name |
-| `role.getEntitlements()` | List entitlements associated with role |
-| `role.addEntitlement(entitlement)` | Add entitlement to role |
-| `role.removeEntitlement(entitlement)` | Remove entitlement from role |
-| `role.getMembers()` | Identities assigned to the role |
-| `role.addMember(identity)` | Assign identity to role |
-| `role.removeMember(identity)` | Remove identity from role |
+| Method | Purpose | Example (How to Use) |
+|--------|--------|--------------------|
+| `role.getName()` | Get the role name | `String roleName = role.getName();` |
+| `role.getEntitlements()` | Get entitlements associated with the role | `List<Entitlement> entitlements = role.getEntitlements();` |
+| `role.addEntitlement(entitlement)` | Add an entitlement to the role | `role.addEntitlement(entitlement); context.saveObject(role);` |
+| `role.removeEntitlement(entitlement)` | Remove an entitlement from the role | `role.removeEntitlement(entitlement); context.saveObject(role);` |
+| `role.getMembers()` | Get identities assigned to the role | `List<Identity> members = role.getMembers();` |
+| `role.addMember(identity)` | Assign an identity to the role | `role.addMember(alice); context.saveObject(role);` |
+| `role.removeMember(identity)` | Remove an identity from the role | `role.removeMember(bob); context.saveObject(role);` |
 
 **Example Use Case:** Assign entitlements dynamically, manage role memberships.
 
@@ -233,12 +236,12 @@ Represents a permission, group, or system access right.
 ## 7️⃣ Policy 📜
 Defines compliance rules such as SoD (Segregation of Duties) or access restrictions.
 
-| Method | Purpose |
-|--------|--------|
-| `policy.getName()` | Policy name |
-| `policy.getItems()` | Items monitored by policy |
-| `policy.evaluate(identity)` | Check if identity violates policy |
-| `policy.isViolated(identity)` | Returns true/false for violation |
+| Method | Purpose | Example (How to Use) |
+|--------|--------|--------------------|
+| `policy.getName()` | Get the policy name | `String policyName = policy.getName();` |
+| `policy.getItems()` | Get items monitored by the policy | `List<Object> items = policy.getItems();` |
+| `policy.evaluate(identity)` | Check if an identity violates the policy | `boolean violation = policy.evaluate(alice);` |
+| `policy.isViolated(identity)` | Returns true/false if identity violates | `if(policy.isViolated(ali
 
 **Example Use Case:** Auto-flag high-risk access, prevent conflicting role assignments.
 
@@ -247,13 +250,13 @@ Defines compliance rules such as SoD (Segregation of Duties) or access restricti
 ## 8️⃣ Task / TaskContext 🛠️
 Represents scheduled jobs or workflow tasks. Passed to Task Rules.
 
-| Method | Purpose |
-|--------|--------|
-| `task.getName()` | Task name |
-| `task.getContext()` | Execution context |
-| `task.getParameter("paramName")` | Fetch task parameters |
-| `task.run()` | Execute the task programmatically |
-| `task.getResult()` | Returns task execution results |
+| Method | Purpose | Example (How to Use) |
+|--------|--------|--------------------|
+| `task.getName()` | Get the task name | `String taskName = task.getName();` |
+| `task.getContext()` | Get execution context | `TaskContext ctx = task.getContext();` |
+| `task.getParameter("paramName")` | Fetch task parameters | `String lastRun = task.getParameter("lastRunDate");` |
+| `task.run()` | Execute the task | `task.run();` |
+| `task.getResult()` | Get task execution result | `String result = task.getResult(); log.info(result);` |
 
 **Example Use Case:** Aggregation, certification campaigns, cleanup jobs, reporting.
 
@@ -262,12 +265,12 @@ Represents scheduled jobs or workflow tasks. Passed to Task Rules.
 ## 9️⃣ CertificationCampaign ✅
 Represents a certification or review campaign.
 
-| Method | Purpose |
-|--------|--------|
-| `campaign.getName()` | Campaign name |
-| `campaign.getItems()` | Items to review (users/roles) |
-| `campaign.getStatus()` | Current campaign status |
-| `campaign.addItem(identityOrRole)` | Add an item to the campaign |
+| Method | Purpose | Example (How to Use) |
+|--------|--------|--------------------|
+| `campaign.getName()` | Get the campaign name | `String campaignName = campaign.getName();` |
+| `campaign.getItems()` | Get items to review | `List<Object> items = campaign.getItems();` |
+| `campaign.getStatus()` | Get current campaign status | `String status = campaign.getStatus();` |
+| `campaign.addItem(identityOrRole)` | Add an identity or role to the campaign | `campaign.addItem(alice); context.saveObject(campaign);` |
 
 **Example Use Case:** Manage access reviews, approvals, and certification logic.
 
