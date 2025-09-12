@@ -88,7 +88,8 @@ return false;
 - Proper correlation is critical for **accurate provisioning, certifications, and compliance**.
 
 
-## 🛡️ SailPoint Correlation Rule Practice Questions 🚀
+
+# 🛡️ SailPoint Correlation Rule Practice Questions 🚀
 
 ---
 
@@ -122,6 +123,18 @@ return false;
    - Log all attempted correlations with `log.info()` and verify which accounts were linked or skipped.
 
 10. **Advanced Multi-Attribute Correlation**  
-    - Co
+    - Correlate using **combined criteria**: EmployeeID + Department + Email.  
+    - If no match, return `false` to create a new account automatically.
+
+---
+
+## **Practice Tips**
+- For each scenario:  
+  1. Write a **Beanshell correlation rule**.  
+  2. Create **dummy identities and accounts** in IIQ.  
+  3. Run **aggregation → correlation**.  
+  4. Observe and debug with `log.info()`.
+
+---
 
 
