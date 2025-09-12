@@ -85,5 +85,43 @@ return false;
 - Always **prioritize unique and stable attributes** like `employeeID`.  
 - Use **multiple attributes** for complex scenarios to avoid duplicates.  
 - Test each scenario in a **dev/test environment**.  
-- Proper correlation is critical for **accurate provisioning, certifications, and compliance**.  
+- Proper correlation is critical for **accurate provisioning, certifications, and compliance**.
+
+
+## 🛡️ SailPoint Correlation Rule Practice Questions 🚀
+
+---
+
+## **10 Real-World Correlation Scenarios**
+
+1. **Simple EmployeeID Match**  
+   - Correlate an AD account to a new identity where `account.employeeID = identity.employeeID`.
+
+2. **Email Matching**  
+   - Correlate using email if `EmployeeID` is missing: `account.email.equals(identity.email)`.
+
+3. **Multiple Accounts Handling**  
+   - A user has multiple accounts in the same system. Correlate only the **active account** (attribute `status = Active`).
+
+4. **Department-Based Correlation**  
+   - Correlate accounts only if `account.department.equals(identity.department)` to prevent cross-department linking.
+
+5. **Username Pattern Matching**  
+   - Correlate accounts based on a username pattern, e.g., `identity.firstName + "." + identity.lastName`.
+
+6. **Priority Rules**  
+   - When multiple accounts match, correlate with the account having the **earliest creation date**.
+
+7. **Temporary Accounts**  
+   - Ignore temporary accounts: correlate only if `account.type != "temp"`.
+
+8. **External System Accounts**  
+   - Correlate accounts from **specific systems only**, e.g., only AD accounts, skip Workday.
+
+9. **Logging and Debugging**  
+   - Log all attempted correlations with `log.info()` and verify which accounts were linked or skipped.
+
+10. **Advanced Multi-Attribute Correlation**  
+    - Co
+
 
