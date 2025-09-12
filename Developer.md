@@ -32,5 +32,45 @@
 
 ---
 
-## 🧩 Phase 3: Advanced Developer Sk
+## 🧩 Phase 3: Advanced Developer Skills (Weeks 7–10)
+> *“Level unlocked: Customization Wizard 🧙‍♀️”*  
 
+- [ ] 🔌 **Plugin Development** → Create a custom dashboard with provisioning stats  
+- [ ] 🔗 **REST API + SCIM** → Integrate SailPoint with an external app  
+- [ ] ⚡ **Performance Tuning** → Optimize aggregation & tasks  
+- [ ] 🐞 **Debugging** → Use logs + workflow trace to fix issues  
+
+🛠️ **Mini-Project:** Build a **Custom Plugin** that shows “Pending Approvals Dashboard”  
+
+🎯 **Checkpoint:** Can you create a **custom REST endpoint** in SailPoint and call it externally?  
+
+---
+
+## 🏆 Phase 4: Expert/Architect Mode (Weeks 11+)
+> *“From Developer → Solution Designer 🏗️”*  
+
+- [ ] 🔐 **Certifications & Access Reviews** → Manager/Role/User certifications  
+- [ ] ⚖️ **SoD (Segregation of Duties)** → Define & enforce compliance rules  
+- [ ] 🚀 **DevOps for IIQ** → CI/CD pipeline for customizations  
+- [ ] ☁️ **IdentityNow (Cloud IAM)** → Learn SaaS version of SailPoint  
+- [ ] 📊 **Governance + Compliance** → GDPR, SOX, HIPAA basics  
+
+🛠️ **Capstone Project:** End-to-End Identity Lifecycle →  
+HR system → SailPoint IIQ → AD + Cloud App → Certification → Audit Report  
+
+🎯 **Checkpoint:** Can you design a **complete IAM workflow** for a new client from scratch?  
+
+---
+
+## 🎮 Progress Tracker
+- [ ] Phase 1 ✅  
+- [ ] Phase 2 ✅  
+- [ ] Phase 3 ✅  
+- [ ] Phase 4 ✅  
+
+💡 **Pro Tip:** Keep a `DevLog.md` → Document all rules, workflows, and issues you solved. This becomes your **portfolio** 📂 for interviews & real projects.  
+
+---
+
+🔥 **Motivation Mode ON:**  
+*"SailPoint mastery isn’t about knowing every rule, it’s about knowing when to use them ⚡"*  
