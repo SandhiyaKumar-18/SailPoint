@@ -117,6 +117,179 @@ return username;
 Together, they make **IdentityIQ run smoothly like a well-oiled company 🚀**  
 
 ---
+## 🛡️ SailPoint Core Objects Cheat Sheet – Extended Version 🚀
+
+In SailPoint rules and workflows, certain objects are passed as inputs.  
+These objects give you access to user data, accounts, applications, context, and policies.
+
+---
+
+## 1️⃣ Identity 👤
+Represents a user in IdentityIQ. Core object for users, roles, entitlements, and attributes.
+
+| Method / Attribute | Purpose |
+|-------------------|--------|
+| `identity.getName()` | Returns username |
+| `identity.getAttribute("attributeName")` | Fetch a custom attribute |
+| `identity.setAttribute("attributeName", value)` | Set or update an attribute |
+| `identity.getRoles()` | Returns a list of roles assigned to the user |
+| `identity.addRole("RoleName")` | Assign a role |
+| `identity.removeRole("RoleName")` | Remove a role |
+| `identity.getAccounts()` | Get linked accounts (AD, LDAP, etc.) |
+| `identity.getEntitlements()` | Returns assigned entitlements |
+| `identity.addEntitlement(entitlement)` | Assign entitlement to user |
+| `identity.removeEntitlement(entitlement)` | Remove entitlement from user |
+| `identity.isEnabled()` | Check if identity is active |
+| `identity.disable()` | Disable the identity |
+| `identity.enable()` | Enable the identity |
+
+**Example Use Case:** Assign roles, entitlements, or trigger notifications based on identity attributes.
+
+---
+
+## 2️⃣ Account 💼
+Represents a system account for a specific application. Linked to identities via correlation rules.
+
+| Method / Attribute | Purpose |
+|-------------------|--------|
+| `account.getName()` | Username in the system |
+| `account.getApplication()` | System/application the account belongs to |
+| `account.getAttribute("attributeName")` | Fetch account attribute |
+| `account.setAttribute("attributeName", value)` | Update account attribute |
+| `account.getOwner()` | Returns the linked identity (if correlated) |
+| `account.isEnabled()` | Check if account is active |
+| `account.enable()` | Enable account |
+| `account.disable()` | Disable account |
+| `account.delete()` | Delete account from system |
+
+**Example Use Case:** Correlate AD accounts with identities, reconcile inactive accounts.
+
+---
+
+## 3️⃣ SailPointContext / .context ⚡
+Provides API access to IdentityIQ objects in rules/workflows. Used for querying, creating, updating, and saving objects.
+
+| Method | Purpose |
+|--------|--------|
+| `context.getObjectByName(Identity.class, "username")` | Fetch identity by username |
+| `context.getObjects(Role.class)` | Fetch all roles |
+| `context.getObjects(Application.class)` | Fetch all applications |
+| `context.getObjects(Policy.class)` | Fetch all policies |
+| `context.saveObject(identity)` | Save changes to an identity |
+| `context.saveObject(account)` | Save account changes |
+| `context.commitTransaction()` | Commit DB changes |
+| `context.deleteObject(identity)` | Delete an object |
+| `context.find(Identity.class, filter)` | Query objects using filters |
+
+**Example Use Case:** Dynamically fetch another user or role and assign it in a rule.
+
+---
+
+## 4️⃣ Application 💻
+Represents a connected system (AD, Workday, Salesforce, etc.).
+
+| Method | Purpose |
+|--------|--------|
+| `application.getName()` | System name |
+| `application.getAccounts()` | List all accounts in the app |
+| `application.getSchema()` | Return application schema (attributes, identity mapping) |
+| `application.getAttribute("attributeName")` | Get application-specific attribute |
+
+**Example Use Case:** Check which users have accounts in a specific system, or configure provisioning.
+
+---
+
+## 5️⃣ Role 🎭
+Represents a collection of entitlements/permissions.
+
+| Method | Purpose |
+|--------|--------|
+| `role.getName()` | Role name |
+| `role.getEntitlements()` | List entitlements associated with role |
+| `role.addEntitlement(entitlement)` | Add entitlement to role |
+| `role.removeEntitlement(entitlement)` | Remove entitlement from role |
+| `role.getMembers()` | Identities assigned to the role |
+| `role.addMember(identity)` | Assign identity to role |
+| `role.removeMember(identity)` | Remove identity from role |
+
+**Example Use Case:** Assign entitlements dynamically, manage role memberships.
+
+---
+
+## 6️⃣ Entitlement 🎯
+Represents a permission, group, or system access right.
+
+| Method | Purpose |
+|--------|--------|
+| `entitlement.getName()` | Entitlement name |
+| `entitlement.getApplication()` | System it belongs to |
+| `identity.addEntitlement(entitlement)` | Assign entitlement to a user |
+| `identity.removeEntitlement(entitlement)` | Remove entitlement from a user |
+
+**Example Use Case:** Assign access rights to identities, manage permissions in provisioning.
+
+---
+
+## 7️⃣ Policy 📜
+Defines compliance rules such as SoD (Segregation of Duties) or access restrictions.
+
+| Method | Purpose |
+|--------|--------|
+| `policy.getName()` | Policy name |
+| `policy.getItems()` | Items monitored by policy |
+| `policy.evaluate(identity)` | Check if identity violates policy |
+| `policy.isViolated(identity)` | Returns true/false for violation |
+
+**Example Use Case:** Auto-flag high-risk access, prevent conflicting role assignments.
+
+---
+
+## 8️⃣ Task / TaskContext 🛠️
+Represents scheduled jobs or workflow tasks. Passed to Task Rules.
+
+| Method | Purpose |
+|--------|--------|
+| `task.getName()` | Task name |
+| `task.getContext()` | Execution context |
+| `task.getParameter("paramName")` | Fetch task parameters |
+| `task.run()` | Execute the task programmatically |
+| `task.getResult()` | Returns task execution results |
+
+**Example Use Case:** Aggregation, certification campaigns, cleanup jobs, reporting.
+
+---
+
+## 9️⃣ CertificationCampaign ✅
+Represents a certification or review campaign.
+
+| Method | Purpose |
+|--------|--------|
+| `campaign.getName()` | Campaign name |
+| `campaign.getItems()` | Items to review (users/roles) |
+| `campaign.getStatus()` | Current campaign status |
+| `campaign.addItem(identityOrRole)` | Add an item to the campaign |
+
+**Example Use Case:** Manage access reviews, approvals, and certification logic.
+
+---
+
+## 🔹 Quick Tips for Development / Interviews
+- **.identity** → Core object, represents users.  
+- **.account** → Use for system-level operations.  
+- **.context / SailPointContext** → Query, create, update, and save objects.  
+- **.application** → Understand connected systems.  
+- **.role & .entitlement** → Permissions, access, and assignments.  
+- **.policy** → Compliance enforcement.  
+- **.task** → Scheduled automation jobs.  
+- Always check **nulls** before accessing attributes.  
+- Know **object interactions**: Identity → Accounts → Roles → Entitlements → Applications → Policies.  
+- Methods vary by **rule type**:  
+  - ProvisioningRule → Identity + Context  
+  - CorrelationRule → Account + Context  
+
+---
+
+💡 Tip: Understanding these objects and their **key methods** is essential to **writing effective rules, workflows, and tasks** in SailPoint.  
 
 ✨ **Tip:**  
 - Try **combining objects in one workflow**:  
