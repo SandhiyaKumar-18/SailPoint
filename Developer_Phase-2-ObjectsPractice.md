@@ -41,8 +41,6 @@ String username = (firstName + "." + lastName + "@company.com").toLowerCase();
 // Return the generated username
 return username;
 
-
-
 ---
 
 ## 2️⃣ Application Object 💼  
