@@ -19,18 +19,28 @@ This guide helps you **practice working with core IIQ objects**: Identity, Appli
 
 **Bonus:** Write a **Beanshell rule** to auto-generate username as `first.last@company.com`  
 
-# 1️⃣ Identity Object 👤 – Practice Guide
 
-**What it is:**  
-Represents a user in IIQ (employee, contractor, system account).
 
 ---
 
 - [ ] **Write a Beanshell rule to auto-generate username**  
   ```java
-  String first = identity.getStringAttribute("firstname");
-  String last = identity.getStringAttribute("lastname");
-  return (first + "." + last + "@company.com").toLowerCase();
+ // Beanshell Rule: Auto-generate username as first.last@company.com
+
+// Get first and last name attributes from the identity
+String firstName = identity.getStringAttribute("firstname");
+String lastName = identity.getStringAttribute("lastname");
+
+// Make sure the attributes are not null
+if(firstName == null) firstName = "";
+if(lastName == null) lastName = "";
+
+// Generate username in lowercase: first.last@company.com
+String username = (firstName + "." + lastName + "@company.com").toLowerCase();
+
+// Return the generated username
+return username;
+
 
 
 ---
