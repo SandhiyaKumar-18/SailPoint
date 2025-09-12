@@ -136,5 +136,35 @@ return false;
   4. Observe and debug with `log.info()`.
 
 ---
+# 🛡️ SailPoint Correlation Rules – Quick Reference Table 🚀
+
+| #  | Scenario / Requirement | Sample Beanshell Logic |
+|----|----------------------|-----------------------|
+| 1  | **Simple EmployeeID Match**<br>Correlate AD account where `account.employeeID == identity.employeeID` | ```java String acctEmpId = account.getAttribute("employeeID"); String idEmpId = identity.getAttribute("employeeID"); if(acctEmpId != null && acctEmpId.equals(idEmpId)) return true; return false; ``` |
+| 2  | **Email Matching**<br>Use email if EmployeeID missing | ```java String acctEmail = account.getAttribute("mail"); String idEmail = identity.getAttribute("email"); String idEmpId = identity.getAttribute("employeeID"); if((idEmpId==null || idEmpId.isEmpty()) && acctEmail != null && acctEmail.equalsIgnoreCase(idEmail)) return true; return false; ``` |
+| 3  | **Multiple Accounts Handling**<br>Correlate only active accounts | ```java String status = account.getAttribute("status"); if(status != null && status.equalsIgnoreCase("Active")) { return true; } return false; ``` |
+| 4  | **Department-Based Correlation**<br>Match department to prevent cross-linking | ```java String acctDept = account.getAttribute("department"); String idDept = identity.getAttribute("department"); if(acctDept != null && acctDept.equalsIgnoreCase(idDept)) return true; return false; ``` |
+| 5  | **Username Pattern Matching**<br>Match pattern like first.last | ```java String acctName = account.getName(); String expected = identity.getAttribute("firstName")+"."+identity.getAttribute("lastName"); if(acctName != null && acctName.equalsIgnoreCase(expected)) return true; return false; ``` |
+| 6  | **Priority Rules**<br>When multiple matches, pick earliest created | ```java Date acctDate = (Date)account.getAttribute("creationDate"); Date earliest = (Date)inputs.get("earliestDate"); if(earliest == null || acctDate.before(earliest)) { inputs.put("earliestDate", acctDate); return true; } return false; ``` |
+| 7  | **Temporary Accounts**<br>Ignore temp accounts | ```java String type = account.getAttribute("type"); if(type != null && !type.equalsIgnoreCase("temp")) return true; return false; ``` |
+| 8  | **External System Accounts Only**<br>Correlate only AD accounts | ```java String system = account.getApplication().getName(); if(system.equalsIgnoreCase("AD")) return true; return false; ``` |
+| 9  | **Logging and Debugging**<br>Log all correlation attempts | ```java String msg = "Correlating "+identity.getName()+" with "+account.getName(); log.info(msg); return true; // or false based on your logic ``` |
+| 10 | **Advanced Multi-Attribute Correlation**<br>Combine EmployeeID + Dept + Email | ```java String acctEmpId = account.getAttribute("employeeID"); String idEmpId = identity.getAttribute("employeeID"); String acctDept = account.getAttribute("department"); String idDept = identity.getAttribute("department"); String acctEmail = account.getAttribute("mail"); String idEmail = identity.getAttribute("email"); if(acctEmpId != null && acctEmpId.equals(idEmpId) && acctDept != null && acctDept.equalsIgnoreCase(idDept) && acctEmail != null && acctEmail.equalsIgnoreCase(idEmail)) return true; return false; ``` |
+
+---
+
+✅ **Tips for Practice:**  
+- Paste the code into **correlation rules** in IIQ  
+- Create **dummy identities and accounts** for each scenario  
+- Run **aggregation → correlation**  
+- Observe logs using `log.info()` to verify behavior  
+
+---
+
+This table gives you a **ready-to-practice cheat sheet** for mastering correlation rules in SailPoint.  
+
+I can also **create a single `.md` file including all 10 scenarios with step-by-step testing instructions** if you want, so you can practice systematically.  
+
+Do you want me to do that next?
 
 
