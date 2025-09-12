@@ -1,1 +1,1 @@
-#🧩 SailPoint IdentityIQ Architecture – Deep Dive
+# 🧩 SailPoint IdentityIQ Architecture – Deep Dive
