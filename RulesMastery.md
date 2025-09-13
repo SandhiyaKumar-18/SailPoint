@@ -13,8 +13,7 @@ Mastering rules in SailPoint IdentityIQ is essential for building **flexible, re
 - **Key Concept:** Rules are **reusable pieces of logic**, separate from the standard IIQ processes.
 
 **Action Steps:**  
-- Read SailPoint official docs on rules.  
-- Identify examples of rules in your current IIQ instance.  
+- Read SailPoint official docs on rules.   
 
 ---
 
@@ -31,7 +30,7 @@ Mastering rules in SailPoint IdentityIQ is essential for building **flexible, re
 | **Task Rule** | Control scheduled task behavior | `task`, `context` | Optional output, logging |
 
 **Action Steps:**  
-- Open **existing rules** in your IIQ sandbox and review inputs/outputs.  
+  
 - For each type, note which objects are passed and what is returned.  
 
 ---
