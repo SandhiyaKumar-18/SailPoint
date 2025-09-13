@@ -1,6 +1,6 @@
 # 🛡️ SailPoint Rules Mastery Roadmap 🚀
 
-Mastering rules in SailPoint IdentityIQ is essential for building **flexible, reusable, and powerful automation**. This roadmap will guide you from beginner to expert rule developer.
+Mastering rules in SailPoint IdentityIQ is essential for building **flexible, reusable, and powerful automation**.
 
 ---
 
