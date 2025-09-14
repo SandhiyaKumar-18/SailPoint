@@ -1,4 +1,3 @@
-
 # ⚓ SailPoint IdentityIQ – The Complete Mastery Journey 🚀  
 My Multi-Stage Roadmap from **Learner → Developer → Architect**  
 
